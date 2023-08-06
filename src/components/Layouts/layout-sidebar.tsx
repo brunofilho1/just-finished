@@ -1,12 +1,16 @@
 'use client'
 
+import { useTheme } from 'next-themes'
 import { ReactNode } from 'react'
+import { DarkModeBtn } from '../DarkModeBtn/indes'
 
 interface LayoutsProps {
   children: ReactNode
 }
 
 export function SidebarLayout({ children }: LayoutsProps) {
+  const { setTheme } = useTheme()
+
   return (
     <>
       <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
@@ -42,6 +46,7 @@ export function SidebarLayout({ children }: LayoutsProps) {
               </a>
             </div>
             <div className="flex items-center">
+              <DarkModeBtn />
               <div className="flex items-center ml-3">
                 <div>
                   <button
@@ -247,7 +252,7 @@ export function SidebarLayout({ children }: LayoutsProps) {
         </div>
       </aside>
 
-      <div className="p-4 sm:ml-64">{children}</div>
+      <div className="sm:ml-64 sm:mt-6">{children}</div>
     </>
   )
 }

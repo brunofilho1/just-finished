@@ -1,15 +1,15 @@
 import { Carousel } from '@/components/Carousel'
 import { getGames } from '@/services/games.service'
+import { Game, GamesRequest } from '@/types/games.type'
 import { GetServerSideProps } from 'next'
-import { useEffect } from 'react'
 
-export default function Home({ games }: any) {
-  useEffect(() => {
-    console.log(games)
-  }, [])
+interface GamesProps {
+  games: Game[]
+}
 
+export default function Home({ games }: GamesProps) {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col items-center justify-between p-24 dark:text-gray-100 dark:bg-gray-900">
       <div className="flex flex-col justify-between w-full max-w-5xl font-mono text-sm lg:flex">
         <h1 className="text-4xl font-bold">Just Finished</h1>
         <span>
@@ -17,13 +17,12 @@ export default function Home({ games }: any) {
         </span>
       </div>
 
-      <Carousel games={games.results} />
+      <Carousel games={games} />
 
       <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
         <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          href="/games"
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
           rel="noopener noreferrer"
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
@@ -38,9 +37,8 @@ export default function Home({ games }: any) {
         </a>
 
         <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          href="/lists"
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
           rel="noopener noreferrer"
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
@@ -56,9 +54,8 @@ export default function Home({ games }: any) {
         </a>
 
         <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          href="/news"
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
           rel="noopener noreferrer"
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
@@ -73,9 +70,8 @@ export default function Home({ games }: any) {
         </a>
 
         <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          href="/recommended"
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
           rel="noopener noreferrer"
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
@@ -94,11 +90,11 @@ export default function Home({ games }: any) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const gamesFromApi = await getGames()
+  const gamesFromApi: GamesRequest = await getGames()
 
   return {
     props: {
-      games: gamesFromApi,
+      games: gamesFromApi.results,
     },
   }
 }

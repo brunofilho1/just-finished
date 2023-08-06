@@ -1,5 +1,7 @@
 'use client'
 
+import { Game } from '@/types/games.type'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { CarouselControls } from './carousel-controls'
 
@@ -24,7 +26,7 @@ import { CarouselControls } from './carousel-controls'
 
 type CarouselProps = {
   autoSlideDuration?: number
-  games: any
+  games: Game[]
 }
 
 export const Carousel = ({
@@ -32,6 +34,7 @@ export const Carousel = ({
   games,
 }: CarouselProps) => {
   const [currentSlide, setCurrentSlide] = useState<number>(0)
+  const { push } = useRouter()
 
   useEffect(() => {
     const timer = setInterval(goToNextSlide, autoSlideDuration)
@@ -53,6 +56,10 @@ export const Carousel = ({
     )
   }
 
+  const handleOpenGame = (gameSlug: string) => {
+    push(`/game/${gameSlug}`)
+  }
+
   const isActive = (index: number) => {
     return index === currentSlide
   }
@@ -60,16 +67,18 @@ export const Carousel = ({
   return (
     <div className="relative max-w-[1200px] max-h-[600px] mx-auto m-8">
       {games.map((game: any, index: number) => (
-        <div
+        <button
+          key={game.id}
           className={`relative w-full top-0 left-0 transition-all duration-500 ${
             isActive(index) ? 'visible' : 'hidden'
           }`}
+          onClick={() => handleOpenGame(game.slug)}
         >
-          <div className="w-full h-full min-h-[300px]">
+          <div className="min-w-[1080px] w-full h-full min-h-[300px]">
             <img
               src={game.background_image}
               alt={game.name}
-              className="rounded-sm w-full h-[600px] object-cover"
+              className="rounded-sm w-[1080px] h-[600px] object-cover"
             />
           </div>
           <div className="relative h-full flex items-center justify-center">
@@ -77,7 +86,7 @@ export const Carousel = ({
               <p>{game.name}</p>
             </div>
           </div>
-        </div>
+        </button>
       ))}
       <CarouselControls
         totalSlides={games.length}
