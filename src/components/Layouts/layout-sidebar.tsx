@@ -40,9 +40,7 @@ export function SidebarLayout({ children }: LayoutsProps) {
                 </svg>
               </button>
               <a href="/" className="flex ml-2 md:mr-24">
-                <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
-                  Just Finished
-                </span>
+                <img src="/logo/svg/logo.svg" width={150} alt="" />
               </a>
             </div>
             <div className="flex items-center">
