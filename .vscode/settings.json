@@ -1,0 +1,32 @@
+{
+  // =================== CONFIG: eslint e prettier ===================
+  "eslint.format.enable": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.organizeImports": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.inlineSuggest.enabled": true,
+
+  "[javascript]": {
+    "editor.autoClosingBrackets": "always",
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.autoClosingBrackets": "always",
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    [
+      "(w(?:\\.[a-z]+)?\\((?:[\\s\\S]+?)(?:[`'\\\"]+[\\s\\S]+[`'\\\"]+)*?[\\s\\S]*?\\))"
+    ],
+    ["(?<=cn\\()(?:(?:\\s*)'(?:[^']*)'(?:,\\s*)?)+(?=\\s*\\))"]
+  ]
+}
