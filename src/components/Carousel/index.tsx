@@ -1,34 +1,36 @@
 'use client'
 
-import { Slide } from '@/types/carousel.types'
 import { useEffect, useState } from 'react'
 import { CarouselControls } from './carousel-controls'
-import { CarouselSlide } from './carousel-slide'
 
-export const carouselData: Slide[] = [
-  {
-    id: 1,
-    imageUrl: 'https://i.redd.it/sb9gyoyrt3uy.jpg',
-    description: 'The Witcher 3',
-  },
-  {
-    id: 2,
-    imageUrl: 'https://images5.alphacoders.com/917/917971.jpg',
-    description: 'Red Dead Redemption 2',
-  },
-  {
-    id: 3,
-    imageUrl:
-      'https://mesaderpg.com.br/wp-content/uploads/2020/10/baldurs-gate-3-poster.jpg',
-    description: "Baldur's Gate 3",
-  },
-]
+// export const carouselData: Slide[] = [
+//   {
+//     id: 1,
+//     imageUrl: 'https://i.redd.it/sb9gyoyrt3uy.jpg',
+//     description: 'The Witcher 3',
+//   },
+//   {
+//     id: 2,
+//     imageUrl: 'https://images5.alphacoders.com/917/917971.jpg',
+//     description: 'Red Dead Redemption 2',
+//   },
+//   {
+//     id: 3,
+//     imageUrl:
+//       'https://mesaderpg.com.br/wp-content/uploads/2020/10/baldurs-gate-3-poster.jpg',
+//     description: "Baldur's Gate 3",
+//   },
+// ]
 
 type CarouselProps = {
   autoSlideDuration?: number
+  games: any
 }
 
-export const Carousel = ({ autoSlideDuration = 15000 }: CarouselProps) => {
+export const Carousel = ({
+  autoSlideDuration = 15000,
+  games,
+}: CarouselProps) => {
   const [currentSlide, setCurrentSlide] = useState<number>(0)
 
   useEffect(() => {
@@ -42,27 +44,43 @@ export const Carousel = ({ autoSlideDuration = 15000 }: CarouselProps) => {
   }
 
   const goToNextSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide + 1) % carouselData.length)
+    setCurrentSlide((prevSlide) => (prevSlide + 1) % games.length)
   }
 
   const goToPrevSlide = () => {
     setCurrentSlide((prevSlide) =>
-      prevSlide === 0 ? carouselData.length - 1 : prevSlide - 1
+      prevSlide === 0 ? games.length - 1 : prevSlide - 1
     )
+  }
+
+  const isActive = (index: number) => {
+    return index === currentSlide
   }
 
   return (
     <div className="relative max-w-[1200px] max-h-[600px] mx-auto m-8">
-      {carouselData.map((slide, index) => (
-        <CarouselSlide
-          key={slide.id}
-          slide={slide}
-          index={index}
-          currentSlide={currentSlide}
-        />
+      {games.map((game: any, index: number) => (
+        <div
+          className={`relative w-full top-0 left-0 transition-all duration-500 ${
+            isActive(index) ? 'visible' : 'hidden'
+          }`}
+        >
+          <div className="w-full h-full min-h-[300px]">
+            <img
+              src={game.background_image}
+              alt={game.name}
+              className="rounded-sm w-full h-[600px] object-cover"
+            />
+          </div>
+          <div className="relative h-full flex items-center justify-center">
+            <div className="w-full absolute bottom-0 text-center bg-black/80 text-white p-4 shadow-2xl">
+              <p>{game.name}</p>
+            </div>
+          </div>
+        </div>
       ))}
       <CarouselControls
-        totalSlides={carouselData.length}
+        totalSlides={games.length}
         currentSlide={currentSlide}
         goToSlide={goToSlide}
         goToNextSlide={goToNextSlide}

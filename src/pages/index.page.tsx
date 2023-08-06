@@ -1,8 +1,13 @@
-'use client'
-
 import { Carousel } from '@/components/Carousel'
+import { getGames } from '@/services/games.service'
+import { GetServerSideProps } from 'next'
+import { useEffect } from 'react'
 
-export default function Home() {
+export default function Home({ games }: any) {
+  useEffect(() => {
+    console.log(games)
+  }, [])
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="flex flex-col justify-between w-full max-w-5xl font-mono text-sm lg:flex">
@@ -12,7 +17,7 @@ export default function Home() {
         </span>
       </div>
 
-      <Carousel />
+      <Carousel games={games.results} />
 
       <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
         <a
@@ -86,4 +91,14 @@ export default function Home() {
       </div>
     </main>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const gamesFromApi = await getGames()
+
+  return {
+    props: {
+      games: gamesFromApi,
+    },
+  }
 }
