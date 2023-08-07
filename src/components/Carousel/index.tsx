@@ -56,8 +56,8 @@ export const Carousel = ({
     )
   }
 
-  const handleOpenGame = (gameSlug: string) => {
-    push(`/game/${gameSlug}`)
+  const handleOpenGame = (gameId: number, gameSlug: string) => {
+    push(`/games/${gameSlug}?id=${gameId}`)
   }
 
   const isActive = (index: number) => {
@@ -72,7 +72,7 @@ export const Carousel = ({
           className={`relative w-full top-0 left-0 transition-all duration-500 ${
             isActive(index) ? 'visible' : 'hidden'
           }`}
-          onClick={() => handleOpenGame(game.slug)}
+          onClick={() => handleOpenGame(game.id, game.slug)}
         >
           <div className="min-w-[1080px] w-full h-full min-h-[300px]">
             <img

@@ -6,3 +6,8 @@ export async function getGames() {
   const res = await api(`/games${apiKey}`)
   return await res.data
 }
+
+export async function getGameById(gameId: string | number) {
+  const res = await api(`/games/${gameId}${apiKey}`)
+  return await res.data
+}

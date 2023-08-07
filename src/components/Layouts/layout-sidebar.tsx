@@ -250,7 +250,7 @@ export function SidebarLayout({ children }: LayoutsProps) {
         </div>
       </aside>
 
-      <div className="sm:ml-64 sm:mt-6">{children}</div>
+      <div className="sm:ml-64 sm:mt-9">{children}</div>
     </>
   )
 }
