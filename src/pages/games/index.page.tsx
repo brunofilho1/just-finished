@@ -37,6 +37,7 @@ import {
 import { getGames } from '@/services/games.service'
 import { Game, GamesRequest } from '@/types/games.type'
 import { GetServerSideProps } from 'next'
+import route from 'next/router'
 
 export const columns: ColumnDef<Game>[] = [
   {
@@ -62,11 +63,13 @@ export const columns: ColumnDef<Game>[] = [
     accessorKey: 'background_image',
     header: 'Banner',
     cell: ({ row }) => (
-      <img
-        className="w-16 rounded-md"
-        src={row.original.background_image}
-        alt={row.original.name}
-      />
+      <GameHoverCard game={row.original}>
+        <img
+          className="w-16 rounded-md"
+          src={row.original.background_image}
+          alt={row.original.name}
+        />
+      </GameHoverCard>
     ),
     enableSorting: false,
     enableHiding: false,
@@ -74,7 +77,17 @@ export const columns: ColumnDef<Game>[] = [
   {
     accessorKey: 'name',
     header: 'Name',
-    cell: ({ row }) => <div className="capitalize">{row.getValue('name')}</div>,
+    cell: ({ row }) => (
+      <Button
+        onClick={() =>
+          route.push(`/games/${row.original.slug}?id=${row.original.id}`)
+        }
+        variant="link"
+        className="capitalize"
+      >
+        {row.getValue('name')}
+      </Button>
+    ),
   },
   {
     accessorKey: 'released',
@@ -159,7 +172,7 @@ export default function Games({ games }: GamesProps) {
   })
 
   return (
-    <div className="w-full p-12">
+    <div className="w-full">
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter games by name..."
@@ -219,21 +232,19 @@ export default function Games({ games }: GamesProps) {
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <GameHoverCard game={row.original}>
-                  <TableRow
-                    key={row.id}
-                    data-state={row.getIsSelected() && 'selected'}
-                  >
-                    {row.getVisibleCells().map((cell) => (
-                      <TableCell key={cell.id}>
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext()
-                        )}
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                </GameHoverCard>
+                <TableRow
+                  key={row.id}
+                  data-state={row.getIsSelected() && 'selected'}
+                >
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </TableCell>
+                  ))}
+                </TableRow>
               ))
             ) : (
               <TableRow>

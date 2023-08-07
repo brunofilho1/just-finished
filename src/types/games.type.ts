@@ -110,3 +110,15 @@ export interface GameById {
     }
   ]
 }
+
+export interface GameScreenshots {
+  count: number
+  next: string
+  previous: string
+  results: [
+    {
+      image: string
+      hidden: boolean
+    }
+  ]
+}

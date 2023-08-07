@@ -9,7 +9,7 @@ interface GamesProps {
 
 export default function Home({ games }: GamesProps) {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24 dark:text-gray-100 dark:bg-gray-900">
+    <main className="flex flex-col items-center justify-between dark:text-gray-100 dark:bg-gray-900">
       <div className="flex justify-between items-center w-full max-w-5xl font-mono text-sm lg:flex">
         <img src="/logo/svg/logo.svg" width={350} alt="" />
         <span className="flex-wrap w-60">

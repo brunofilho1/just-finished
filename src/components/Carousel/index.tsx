@@ -74,7 +74,7 @@ export const Carousel = ({
           }`}
           onClick={() => handleOpenGame(game.id, game.slug)}
         >
-          <div className="min-w-[1080px] w-full h-full min-h-[300px]">
+          <div className="w-full h-full min-h-[300px]">
             <img
               src={game.background_image}
               alt={game.name}

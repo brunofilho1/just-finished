@@ -21,7 +21,7 @@ export function GameHoverCard({ children, game }: GameHoverCardProps) {
       <HoverCardContent className="w-80">
         <div className="flex justify-between space-x-4">
           <Avatar>
-            <AvatarImage src={game.background_image} />
+            <AvatarImage className="object-cover" src={game.background_image} />
             <AvatarFallback>VC</AvatarFallback>
           </Avatar>
           <div className="space-y-1">
