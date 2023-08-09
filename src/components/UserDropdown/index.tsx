@@ -25,26 +25,38 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { useRouter } from 'next/router'
 import { Avatar } from '../Avatar'
 
+const user = {
+  avatar: 'https://github.com/brunofilho1.png',
+  name: 'Bruno de Oliveira Filho',
+  email: 'oliveira.brunofilho@gmail.com',
+}
+
 export function UserDropdown() {
+  const { push } = useRouter()
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="p-0 bg-transparent rounded-full">
-          <Avatar src="https://github.com/brunofilho1.png" />
+          <Avatar src={user.avatar} />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+        <DropdownMenuLabel className="pb-0">{user.name}</DropdownMenuLabel>
+        <DropdownMenuLabel className="text-xs font-thin pt-0 brightness-75">
+          {user.email}
+        </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
+          <DropdownMenuItem onClick={() => push('/user/profile')}>
             <User className="mr-2 h-4 w-4" />
             <span>Profile</span>
             <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
           </DropdownMenuItem>
-          <DropdownMenuItem>
+          <DropdownMenuItem onClick={() => push('/settings')}>
             <Settings className="mr-2 h-4 w-4" />
             <span>Settings</span>
             <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
@@ -77,16 +89,23 @@ export function UserDropdown() {
           </DropdownMenuSub>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={() =>
+            window.open(
+              'https://github.com/brunofilho1/just-finished',
+              '_blank'
+            )
+          }
+        >
           <Github className="mr-2 h-4 w-4" />
           <span>GitHub</span>
         </DropdownMenuItem>
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={() => push('/support')}>
           <LifeBuoy className="mr-2 h-4 w-4" />
           <span>Support</span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={() => console.log('Logout')}>
           <LogOut className="mr-2 h-4 w-4" />
           <span>Log out</span>
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
