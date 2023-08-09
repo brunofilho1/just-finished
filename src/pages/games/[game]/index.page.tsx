@@ -1,3 +1,4 @@
+import { GameCarousel } from '@/components/Carousel/game-carousel'
 import { Button } from '@/components/ui/button'
 import {
   getGameAchievementsById,
@@ -29,12 +30,7 @@ export default function Game({ game, screenshots, achievements }: GameProps) {
       <h1 className="text-4xl">{game.name}</h1>
       <div className="flex flex-col md:flex-row justify-center gap-4">
         <section className="w-full md:w-[65%] flex flex-col gap-2 bg-gray-800">
-          <img className="w-full" src={game.background_image} alt="" />
-          <div className="flex overflow-x-auto gap-2 items-center">
-            {screenshots?.results.map((screenshot, index) => (
-              <img key={index} width={100} src={screenshot.image} alt="" />
-            ))}
-          </div>
+          <GameCarousel screenshots={screenshots.results} />
           <div className="flex flex-col gap-4 p-4">
             <div className="flex gap-4">
               <Button className="flex gap-2">

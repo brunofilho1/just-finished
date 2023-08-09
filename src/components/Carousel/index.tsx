@@ -1,28 +1,9 @@
 'use client'
 
 import { Game } from '@/types/games.type'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { CarouselControls } from './carousel-controls'
-
-// export const carouselData: Slide[] = [
-//   {
-//     id: 1,
-//     imageUrl: 'https://i.redd.it/sb9gyoyrt3uy.jpg',
-//     description: 'The Witcher 3',
-//   },
-//   {
-//     id: 2,
-//     imageUrl: 'https://images5.alphacoders.com/917/917971.jpg',
-//     description: 'Red Dead Redemption 2',
-//   },
-//   {
-//     id: 3,
-//     imageUrl:
-//       'https://mesaderpg.com.br/wp-content/uploads/2020/10/baldurs-gate-3-poster.jpg',
-//     description: "Baldur's Gate 3",
-//   },
-// ]
 
 type CarouselProps = {
   autoSlideDuration?: number
@@ -41,10 +22,6 @@ export const Carousel = ({
 
     return () => clearInterval(timer)
   }, [currentSlide])
-
-  const goToSlide = (index: number) => {
-    setCurrentSlide(index)
-  }
 
   const goToNextSlide = () => {
     setCurrentSlide((prevSlide) => (prevSlide + 1) % games.length)
@@ -88,13 +65,20 @@ export const Carousel = ({
           </div>
         </button>
       ))}
-      <CarouselControls
-        totalSlides={games.length}
-        currentSlide={currentSlide}
-        goToSlide={goToSlide}
-        goToNextSlide={goToNextSlide}
-        goToPrevSlide={goToPrevSlide}
-      />
+      <div className="absolute bottom-0 left-0 right-0 flex justify-center items-center p-4">
+        <button
+          onClick={goToPrevSlide}
+          className="absolute left-0 text-gray-600 hover:text-gray-800 focus:outline-none"
+        >
+          <ChevronLeft />
+        </button>
+        <button
+          onClick={goToNextSlide}
+          className="absolute right-0 text-gray-600 hover:text-gray-800 focus:outline-none"
+        >
+          <ChevronRight />
+        </button>
+      </div>
     </div>
   )
 }
