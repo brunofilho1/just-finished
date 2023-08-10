@@ -123,15 +123,17 @@ export interface GameScreenshots {
   ]
 }
 
+export interface Achievement {
+  id: number
+  name: string
+  description: string
+  image: string
+  percent: string
+}
+
 export interface GameAchievements {
   count: number
   next: string
   previous: string
-  results: {
-    id: number
-    name: string
-    description: string
-    image: string
-    percent: string
-  }[]
+  results: Achievement[]
 }

@@ -1,4 +1,5 @@
 import { GameCarousel } from '@/components/Carousel/game-carousel'
+import { AchievementHoverCard } from '@/components/HoverCard/achievement-hover-card'
 import { Button } from '@/components/ui/button'
 import {
   getGameAchievementsById,
@@ -95,13 +96,14 @@ export default function Game({ game, screenshots, achievements }: GameProps) {
 
             <div className="flex gap-2 overflow-x-scroll">
               {achievements.results.map((achievement) => (
-                <img
-                  className="cursor-pointer"
-                  title={achievement.name}
-                  width={50}
-                  src={achievement.image}
-                  alt=""
-                />
+                <AchievementHoverCard achievement={achievement}>
+                  <img
+                    className="cursor-pointer"
+                    width={50}
+                    src={achievement.image}
+                    alt=""
+                  />
+                </AchievementHoverCard>
               ))}
             </div>
           </div>
