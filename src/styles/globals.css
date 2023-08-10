@@ -69,8 +69,8 @@
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 12px;
+  height: 12px;
   margin-right: 5px;
 }
 
@@ -80,9 +80,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-zinc-400;
-  border-radius: 2px;
-  cursor: move;
+  @apply bg-gray-400 hover:bg-gray-300 rounded-sm cursor-help;
 }
 
 @layer base {

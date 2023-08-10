@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { ImageDialog } from '../ImageDialog'
 
 type CarouselProps = {
   autoSlideDuration?: number
@@ -38,11 +39,13 @@ export const GameCarousel = ({
     <div className="flex flex-col max-w-[1200px] w-full mx-auto">
       <div className="min-h-[350px] sm:w-full max-h-[600px] h-[0] sm:h-full relative">
         <div className="w-full h-0 pb-[56.25%]">
-          <img
-            className="object-cover absolute top-0 left-0 w-full h-full"
-            src={screenshots[currentSlide].image}
-            alt=""
-          />
+          <ImageDialog src={screenshots[currentSlide].image}>
+            <img
+              className="object-cover absolute top-0 left-0 w-full h-full cursor-pointer"
+              src={screenshots[currentSlide].image}
+              alt=""
+            />
+          </ImageDialog>
         </div>
       </div>
 
