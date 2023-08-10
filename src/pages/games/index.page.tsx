@@ -13,6 +13,7 @@ import {
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from 'lucide-react'
 import * as React from 'react'
 
+import { Breadcrumb } from '@/components/Breadcrumb'
 import { GameHoverCard } from '@/components/HoverCard'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
@@ -173,6 +174,7 @@ export default function Games({ games }: GamesProps) {
 
   return (
     <div className="w-full">
+      <Breadcrumb />
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter games by name..."

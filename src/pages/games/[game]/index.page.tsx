@@ -1,3 +1,4 @@
+import { Breadcrumb } from '@/components/Breadcrumb'
 import { GameCarousel } from '@/components/Carousel/game-carousel'
 import { AchievementHoverCard } from '@/components/HoverCard/achievement-hover-card'
 import { Button } from '@/components/ui/button'
@@ -28,6 +29,7 @@ interface GameProps {
 export default function Game({ game, screenshots, achievements }: GameProps) {
   return (
     <div className="flex max-w-[90%] w-full mx-auto flex-col gap-4 shadow-2xl">
+      <Breadcrumb />
       <h1 className="text-4xl">{game.name}</h1>
       <div className="flex flex-col md:flex-row justify-center gap-4">
         <section className="w-full md:w-[65%] flex flex-col gap-2 dark:bg-gray-800">
