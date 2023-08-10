@@ -35,20 +35,28 @@ export const GameCarousel = ({
   }
 
   return (
-    <div className="max-w-[1200px] mx-auto">
-      <img className="w-full" src={screenshots[currentSlide].image} alt="" />
-      <div className="flex overflow-x-auto gap-2 p-2 items-center">
+    <div className="flex flex-col max-w-[1200px] w-full mx-auto">
+      <div className="min-h-[350px] sm:w-full max-h-[600px] h-[0] sm:h-full relative">
+        <div className="w-full h-0 pb-[56.25%]">
+          <img
+            className="object-cover absolute top-0 left-0 w-full h-full"
+            src={screenshots[currentSlide].image}
+            alt=""
+          />
+        </div>
+      </div>
+
+      <div className="flex overflow-x-scroll overflow-y-hidden gap-2 px-2 py-4 items-center">
         {screenshots?.map((screenshot, index) => (
           <button
+            key={index}
             data-active={isActive(index)}
             onClick={() => goToSlide(index)}
             type="button"
-            className="data-[active=true]:ring-4 rounded-sm"
+            className="data-[active=true]:ring-4 rounded-sm flex-shrink-0 w-[160px] h-[80px]"
           >
             <img
-              className="rounded-sm"
-              key={index}
-              width={150}
+              className="rounded-sm object-cover w-full h-full"
               src={screenshot.image}
               alt=""
             />
