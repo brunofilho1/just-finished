@@ -39,7 +39,7 @@ export function UserDropdown() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger className="hover:ring-2" asChild>
         <Button variant="ghost" className="p-0 bg-transparent rounded-full">
           <Avatar src={user.avatar} />
         </Button>
