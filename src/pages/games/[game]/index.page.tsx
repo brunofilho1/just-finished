@@ -27,10 +27,10 @@ interface GameProps {
 
 export default function Game({ game, screenshots, achievements }: GameProps) {
   return (
-    <div className="flex max-w-[90%] mx-auto flex-col gap-4">
+    <div className="flex max-w-[90%] w-full mx-auto flex-col gap-4 shadow-2xl">
       <h1 className="text-4xl">{game.name}</h1>
       <div className="flex flex-col md:flex-row justify-center gap-4">
-        <section className="w-full md:w-[65%] flex flex-col gap-2 bg-gray-800">
+        <section className="w-full md:w-[65%] flex flex-col gap-2 dark:bg-gray-800">
           <GameCarousel screenshots={screenshots.results} />
           <div className="flex flex-col gap-4 p-4">
             <div className="flex gap-4">
@@ -108,7 +108,7 @@ export default function Game({ game, screenshots, achievements }: GameProps) {
             </div>
           </div>
         </section>
-        <section className="w-full md:w-[35%] bg-gray-800">
+        <section className="w-full md:w-[35%] dark:bg-gray-800">
           <img
             className="w-full h-[200px] object-cover"
             src={game.background_image_additional}

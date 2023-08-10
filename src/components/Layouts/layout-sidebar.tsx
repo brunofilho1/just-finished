@@ -9,7 +9,6 @@ import {
   Users,
 } from 'lucide-react'
 import { ReactNode, useState } from 'react'
-import { DarkModeBtn } from '../DarkModeBtn/indes'
 import { Tooltip } from '../Tooltip'
 import { UserDropdown } from '../UserDropdown'
 
@@ -47,7 +46,7 @@ export function SidebarLayout({ children }: LayoutsProps) {
     <>
       <nav
         aria-label="Header"
-        className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700"
+        className="fixed top-0 z-50 w-full bg-zinc-50 border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700"
       >
         <div className="py-3 lg:px-5 lg:pl-3">
           <div className="flex items-center justify-between">
@@ -65,7 +64,7 @@ export function SidebarLayout({ children }: LayoutsProps) {
               </a>
             </div>
             <div className="flex items-center gap-2">
-              <DarkModeBtn />
+              {/* <DarkModeBtn /> */}
               <UserDropdown />
             </div>
           </div>
@@ -75,7 +74,7 @@ export function SidebarLayout({ children }: LayoutsProps) {
       <aside
         data-open={isOpen}
         aria-label="Sidebar"
-        className="fixed top-0 left-0 z-40 data-[open=true]:w-16 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+        className="fixed top-0 left-0 z-40 data-[open=true]:w-16 w-64 h-screen pt-20 transition-transform -translate-x-full bg-zinc-50 border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
       >
         <div className="h-full px-3 overflow-y-auto bg-white dark:bg-gray-800">
           <ul className="space-y-2 font-medium">
