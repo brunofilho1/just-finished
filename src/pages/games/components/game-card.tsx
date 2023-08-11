@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { Game } from '@/types/games.type'
 import { Play, Plus, Star } from 'lucide-react'
+import { useRouter } from 'next/router'
 import { FC } from 'react'
 
 interface GameCardProps {
@@ -8,13 +9,15 @@ interface GameCardProps {
 }
 
 const GameCard: FC<GameCardProps> = ({ game }) => {
+  const { push } = useRouter()
+
   return (
     <div
       className="bg-background hover:bg-muted transition-colors cursor-pointer
       shadow-md border border-border rounded-sm p-4 w-64 flex flex-col gap-4
       justify-between"
     >
-      <div>
+      <div onClick={() => push(`/games/${game.slug}?id=${game.id}`)}>
         <img
           src={game.background_image}
           alt={game.name}

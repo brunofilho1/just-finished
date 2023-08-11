@@ -130,11 +130,11 @@ export const columns: ColumnDef<Game>[] = [
             <DropdownMenuItem
               onClick={() => navigator.clipboard.writeText(game.id.toString())}
             >
-              Copy payment ID
+              Copy game ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuItem>View game details</DropdownMenuItem>
+            <DropdownMenuItem>View my game progress</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )
@@ -275,10 +275,13 @@ export default function Games({ games }: GamesProps) {
           </div>
         </>
       ) : (
-        <div className="flex flex-wrap justify-center gap-4 -mx-4">
-          {games.map((game) => (
-            <GameCard key={game.id} game={game} />
-          ))}
+        <div className="flex flex-col gap-2">
+          <h1 className="text-2xl">All Games</h1>
+          <div className="flex flex-wrap justify-center gap-4 -mx-4">
+            {games.map((game) => (
+              <GameCard key={game.id} game={game} />
+            ))}
+          </div>
         </div>
       )}
 

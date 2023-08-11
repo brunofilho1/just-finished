@@ -56,9 +56,12 @@ export function SidebarLayout({ children }: LayoutsProps) {
             <div className="flex items-center justify-start">
               <Button
                 variant="ghost"
+                size="icon"
                 onClick={() => setIsOpen(!isOpen)}
                 type="button"
-                className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700"
+                className="inline-flex items-center p-2 text-sm text-gray-500
+                rounded-lg dark:text-gray-400 dark:hover:bg-gray-700
+                "
               >
                 <span className="sr-only">Abrir SideBar</span>
                 {isOpen ? <PanelRightClose /> : <PanelLeftClose />}
@@ -68,7 +71,6 @@ export function SidebarLayout({ children }: LayoutsProps) {
               </a>
             </div>
             <div className="flex items-center gap-2">
-              {/* <DarkModeBtn /> */}
               <UserDropdown />
             </div>
           </div>
