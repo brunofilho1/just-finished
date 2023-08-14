@@ -30,8 +30,8 @@ const sidebarItems = [
     icon: <Gamepad size={20} />,
   },
   {
-    text: 'Your Games',
-    href: '/user/games',
+    text: 'My Games',
+    href: '/games/user',
     icon: <List size={20} />,
   },
   {
@@ -82,7 +82,7 @@ export function SidebarLayout({ children }: LayoutsProps) {
         aria-label="Sidebar"
         className="fixed top-0 left-0 z-40 data-[open=true]:w-16 w-64 h-screen pt-20 transition-transform -translate-x-full bg-zinc-50 border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
       >
-        <div className="flex flex-col gap-2 w-full h-full px-3 overflow-y-auto bg-white dark:bg-gray-800">
+        <div className="flex flex-col gap-2 w-full h-full p-3 overflow-y-auto bg-white dark:bg-gray-800">
           {sidebarItems.map((item) => (
             <Tooltip text={item.text} side="right">
               <Button
